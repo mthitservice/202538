@@ -1,0 +1,39 @@
+{
+	"tuev-bicep-bp": {
+		"prefix": "tuev-bicep-bp",
+		"body": [
+			"// TÜV Vorlage erstellt von Michael Lindner - MTH IT Service",
+			"// Erstellt eine Ressourcengruppe und ein virtuelles Netzwerk mit parametergesteuertem Namen",
+			"",
+			"@description('Name der Ressourcengruppe')",
+			"param resourceGroupName string",
+			"",
+			"@description('Name des virtuellen Netzwerks')",
+			"param vnetName string",
+			"",
+			"@description('Ort der Bereitstellung')",
+			"param location string = resourceGroup().location",
+			"",
+			"resource vnet 'Microsoft.Network/virtualNetworks@2023-09-01' = {",
+			"  name: vnetName",
+			"  location: location",
+			"  properties: {",
+			"    addressSpace: {",
+			"      addressPrefixes: [",
+			"        '10.0.0.0/16'",
+			"      ]",
+			"    },",
+			"    subnets: [",
+			"      {",
+			"        name: 'default',",
+			"        properties: {",
+			"          addressPrefix: '10.0.0.0/24'",
+			"        }",
+			"      }",
+			"    ]",
+			"  }",
+			"}"
+		],
+		"description": "TÜV Bicep Blueprint: Erstellt ein VNet mit parametergesteuertem Namen"
+	}
+}
